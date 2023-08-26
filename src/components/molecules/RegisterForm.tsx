@@ -8,11 +8,12 @@ import {
 } from '@chakra-ui/react';
 
 import CustomInput from '../atoms/Input';
-import ButtonList from './ButtonList';
 
-type LoginFormProps = FormControlProps;
+import CustomButton from '../atoms/Button';
 
-const LoginForm = (props: LoginFormProps) => {
+type RegisterFormProps = FormControlProps;
+
+const RegisterForm = (props: RegisterFormProps) => {
   return (
     <FormControl display={'flex'} flexDirection={'column'} gap={6} {...props}>
       <Box display={'flex'} flexDirection={'row'} gap={6}>
@@ -23,14 +24,9 @@ const LoginForm = (props: LoginFormProps) => {
         <FormLabel>비밀번호</FormLabel>
         <CustomInput type="password" />
       </Box>
-      <ButtonList
-        buttonList={[
-          { children: '로그인', type: 'submit' },
-          { children: '회원가입', onClick: () => {}, type: 'button' },
-        ]}
-      />
+      <CustomButton>회원가입</CustomButton>
     </FormControl>
   );
 };
 
-export default LoginForm;
+export default RegisterForm;
