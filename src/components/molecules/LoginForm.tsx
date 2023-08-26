@@ -8,6 +8,7 @@ import {
 } from '@chakra-ui/react';
 
 import CustomInput from '../atoms/Input';
+import ButtonList from './ButtonList';
 
 type LoginFormProps = FormControlProps;
 
@@ -22,6 +23,12 @@ const LoginForm = (props: LoginFormProps) => {
         <FormLabel>비밀번호</FormLabel>
         <CustomInput />
       </Box>
+      <ButtonList
+        buttonList={[
+          { children: '로그인', type: 'submit' },
+          { children: '회원가입', onClick: () => {}, type: 'button' },
+        ]}
+      />
     </FormControl>
   );
 };
