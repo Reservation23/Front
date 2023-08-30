@@ -12,9 +12,9 @@ import CustomInput from '../atoms/Input';
 import CustomButton from '../atoms/Button';
 
 export type RegisterData = {
-  email: string;
   password: string;
   username: string;
+  memberStatus: 'CLIENT' | 'PARTNER';
 };
 
 export type RegisterFormProps = Omit<FormControlProps, 'onSubmit'> & {
@@ -24,32 +24,23 @@ export type RegisterFormProps = Omit<FormControlProps, 'onSubmit'> & {
 const RegisterForm = (props: RegisterFormProps) => {
   const { onSubmit, ...rest } = props;
 
-  const [name, setName] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
+  const [username, setuserName] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    onSubmit({ email, password, username: name });
+    onSubmit({ password, username, memberStatus: 'CLIENT' });
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <FormControl display={'flex'} flexDirection={'column'} gap={6} {...rest}>
         <Box display={'flex'} flexDirection={'row'} gap={6}>
-          <FormLabel>이름</FormLabel>
+          <FormLabel>유저명</FormLabel>
           <CustomInput
-            placeholder="이름"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </Box>
-        <Box display={'flex'} flexDirection={'row'} gap={6}>
-          <FormLabel>이메일</FormLabel>
-          <CustomInput
-            placeholder="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            placeholder="username"
+            value={username}
+            onChange={(e) => setuserName(e.target.value)}
           />
         </Box>
         <Box display={'flex'} flexDirection={'row'} gap={6}>

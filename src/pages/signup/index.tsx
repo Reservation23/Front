@@ -7,7 +7,7 @@ import { RegisterData } from '../../components/molecules/RegisterForm';
 const SignUpIndex = () => {
   const onSubmit = async (value: RegisterData) => {
     try {
-      const response = await fetch('/member', {
+      const response = await fetch('http://3.39.231.227:8080/member', {
         method: 'POST',
         body: JSON.stringify(value),
         headers: {
@@ -25,7 +25,7 @@ const SignUpIndex = () => {
   return (
     <SigninTemplate
       templateStyle={{
-        width: ['100%', '100%', '100%', 1200],
+        width: ['100%', '100%', '100%', 900],
         margin: '0 auto',
         display: 'flex',
         flexDir: 'column',
@@ -33,6 +33,7 @@ const SignUpIndex = () => {
       }}
       registerForm={{
         onSubmit,
+        whiteSpace: 'nowrap',
       }}
     />
   );
