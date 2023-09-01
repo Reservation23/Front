@@ -2,6 +2,9 @@ import { App } from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { ColorModeScript } from '@chakra-ui/react';
 
+import { Provider } from 'react-redux';
+import store from './store';
+
 import reportWebVitals from './reportWebVitals';
 
 import * as React from 'react';
@@ -15,8 +18,10 @@ const root = ReactDOM.createRoot(container);
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <ColorModeScript />
-      <App />
+      <Provider store={store}>
+        <ColorModeScript />
+        <App />
+      </Provider>
     </BrowserRouter>
   </React.StrictMode>
 );
