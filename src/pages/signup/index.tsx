@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SignupTemplate from '../../components/_templates/signupTemplate';
+import SignupTemplate from '../../components/templeit/signupTemplate';
 
 import { RegisterData } from '../../components/molecules/RegisterForm';
 
