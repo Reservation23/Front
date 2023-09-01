@@ -36,7 +36,12 @@ const LoginForm = (props: LoginFormProps) => {
   return (
     <form onSubmit={handleSubmit}>
       <FormControl display={'flex'} flexDirection={'column'} gap={6} {...rest}>
-        <Box display={'flex'} flexDirection={'row'} gap={6}>
+        <Box
+          display={'flex'}
+          flexDirection={'row'}
+          justifyContent={'space-between'}
+          alignItems={'center'}
+        >
           <FormLabel>이메일</FormLabel>
           <CustomInput
             placeholder="email"
@@ -44,7 +49,12 @@ const LoginForm = (props: LoginFormProps) => {
             onChange={(e) => setUsername(e.target.value)}
           />
         </Box>
-        <Box display={'flex'} flexDirection={'row'} gap={6}>
+        <Box
+          display={'flex'}
+          flexDirection={'row'}
+          justifyContent={'space-between'}
+          alignItems={'center'}
+        >
           <FormLabel>비밀번호</FormLabel>
           <CustomInput
             placeholder="password"
