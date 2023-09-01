@@ -2,10 +2,12 @@ import React from 'react';
 
 import useAuth from '../hooks/useAuth';
 
-const Index = () => {
-  useAuth(true);
+import ReservationList from '../components/organisms/ReservationList';
 
-  return <div>Hello world!</div>;
+const Index = () => {
+  useAuth(null);
+
+  return <ReservationList data={[]} />;
 };
 
 export default Index;

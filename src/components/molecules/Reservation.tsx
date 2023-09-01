@@ -1,12 +1,6 @@
 import React from 'react';
 
-export interface ReservationItemProps {
-  storeId: number;
-  memberId: number;
-  name: string;
-  location: string;
-  description: string;
-}
+import { ReservationItemProps } from '../../store/_reducer/reservation';
 
 const ReservationItem: React.FC<ReservationItemProps> = ({
   description,

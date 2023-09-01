@@ -1,17 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-import ReservationItem, {
+import { useAppSelector, useAppThunkDispatch } from '../../store';
+
+import {
   ReservationItemProps,
-} from '../molecules/Reservation';
+  getReservation,
+} from '../../store/_reducer/reservation';
+
+import ReservationItem from '../molecules/Reservation';
 
 type ReservationListProps = {
   data: ReservationItemProps[];
 };
 
-const ReservationList: React.FC<ReservationListProps> = ({ data }) => {
+const ReservationList: React.FC<ReservationListProps> = () => {
+  const dispatch = useAppThunkDispatch();
+
+  const data = useAppSelector((state) => state.reservation);
+
+  useEffect(() => {
+    dispatch(getReservation());
+  }, []);
+
+  console.log(data);
+
   return (
     <div>
-      {data?.map((item) => (
+      {data?.data.map((item) => (
         <ReservationItem key={item?.storeId} {...item} />
       ))}
     </div>
