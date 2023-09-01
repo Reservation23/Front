@@ -59,6 +59,7 @@ export const getReservation = createAsyncThunk<
         message: '로그인이 필요한 서비스 입니다.',
       });
     }
+    // 로그인만 되어있다면 데이터를 얻을 수 있다.
     return dummy;
   } catch (error) {
     console.log(error);

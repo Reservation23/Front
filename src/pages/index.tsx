@@ -5,7 +5,7 @@ import useAuth from '../hooks/useAuth';
 import ReservationList from '../components/organisms/ReservationList';
 
 const Index = () => {
-  useAuth(null);
+  useAuth(true);
 
   return <ReservationList data={[]} />;
 };

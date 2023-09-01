@@ -2,15 +2,24 @@ import React from 'react';
 
 import { LoginData } from '../../components/molecules/LoginForm';
 
-import SigninTemplate from '../../components/templeit/signinTemplate';
+import { useAppThunkDispatch } from '../../store';
+
+import { loginUser } from '../../store/_reducer/user';
 
 import useAuth from '../../hooks/useAuth';
 
+import SigninTemplate from '../../components/templeit/signinTemplate';
+
 const SigninIndex = () => {
   useAuth(false);
+  const dispatch = useAppThunkDispatch();
+
   const onSubmit = async (value: LoginData) => {
-    // api 연동
+    if (!value.password || !value.username) return;
+
+    dispatch(loginUser(value));
   };
+
   return (
     <SigninTemplate
       templateStyle={{

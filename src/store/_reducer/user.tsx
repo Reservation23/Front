@@ -5,9 +5,8 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 interface UserState {
   isLogin: boolean;
   user: {
-    email: string;
+    username: string;
     password: string;
-    name: string;
   };
 }
 
@@ -16,30 +15,17 @@ export type StateProps = UserState;
 const initialState: UserState = {
   isLogin: false,
   user: {
-    email: '',
-    name: '',
+    username: '',
     password: '',
   },
 };
 
 export const loginUser = createAsyncThunk(
   'user/signupUser',
-  async (userData: { email: string; password: string }, thunkAPI) => {
+  async (userData: { username: string; password: string }, thunkAPI) => {
     try {
-      const response = await fetch('url', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(userData),
-      });
-
-      const result = await response.json();
-      if (response.status === 201) {
-        return { ...result }; // reducer의 action.payload
-      } else {
-        throw new Error();
-      }
+      // 일단 로그인이 무조건 성공함.
+      return userData;
     } catch (e: any) {
       throw thunkAPI.rejectWithValue(e.response.data);
     }
@@ -53,8 +39,7 @@ export const userSlice = createSlice({
     logoutUser: (state: StateProps) => {
       state.isLogin = false;
       state.user = {
-        email: '',
-        name: '',
+        username: '',
         password: '',
       };
     },
