@@ -24,7 +24,7 @@ const initialState: UserState = {
 
 export const loginUser = createAsyncThunk(
   'user/signupUser',
-  async (userData: { email: string; password: string }) => {
+  async (userData: { email: string; password: string }, thunkAPI) => {
     try {
       const response = await fetch('url', {
         method: 'POST',
@@ -41,8 +41,7 @@ export const loginUser = createAsyncThunk(
         throw new Error();
       }
     } catch (e: any) {
-      console.log('Error', e.response.data);
-      throw new Error();
+      throw thunkAPI.rejectWithValue(e.response.data);
     }
   }
 );
