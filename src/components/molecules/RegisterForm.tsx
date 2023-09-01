@@ -11,37 +11,58 @@ import CustomInput from '../atoms/Input';
 
 import CustomButton from '../atoms/Button';
 
-type RegisterFormProps = Omit<FormControlProps, 'onSubmit'> & {
-  onSubmit: (value: LoginData) => void;
+import CustomSelect from '../atoms/Select';
+
+type MemberStatus = 'CLIENT' | 'PARTNER';
+
+export type RegisterData = {
+  password: string;
+  username: string;
+  memberStatus: MemberStatus;
 };
 
-type LoginData = {
-  email: string;
-  password: string;
+export type RegisterFormProps = Omit<FormControlProps, 'onSubmit'> & {
+  onSubmit: (value: RegisterData) => void;
 };
 
 const RegisterForm = (props: RegisterFormProps) => {
   const { onSubmit, ...rest } = props;
 
-  const [email, setEmail] = useState<string>('');
+  const [username, setuserName] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [status, setStatus] = useState<string>('CLIENT');
 
-  const handleSubmit = () => {
-    onSubmit({ email, password });
+  console.log(status);
+
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
+    onSubmit({
+      password,
+      username,
+      memberStatus: status as MemberStatus,
+    });
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <FormControl display={'flex'} flexDirection={'column'} gap={6} {...rest}>
-        <Box display={'flex'} flexDirection={'row'} gap={6}>
-          <FormLabel>이메일</FormLabel>
+        <Box
+          display={'flex'}
+          flexDirection={'row'}
+          justifyContent={'space-between'}
+        >
+          <FormLabel>유저명</FormLabel>
           <CustomInput
-            placeholder="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            placeholder="username"
+            value={username}
+            onChange={(e) => setuserName(e.target.value)}
           />
         </Box>
-        <Box display={'flex'} flexDirection={'row'} gap={6}>
+        <Box
+          display={'flex'}
+          flexDirection={'row'}
+          justifyContent={'space-between'}
+        >
           <FormLabel>비밀번호</FormLabel>
           <CustomInput
             type="password"
@@ -50,7 +71,14 @@ const RegisterForm = (props: RegisterFormProps) => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </Box>
-        <CustomButton>회원가입</CustomButton>
+        <CustomSelect
+          setValue={(value: string) => setStatus(value)}
+          list={[
+            { value: 'CLIENT', title: '일반 회원' },
+            { value: 'PARTNER', title: '파트너 회원' },
+          ]}
+        />
+        <CustomButton type="submit">회원가입</CustomButton>
       </FormControl>
     </form>
   );
