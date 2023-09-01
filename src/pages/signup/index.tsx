@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SigninTemplate from '../../components/_templates/signinTemplate';
+import SignupTemplate from '../../components/_templates/signupTemplate';
 
 import { RegisterData } from '../../components/molecules/RegisterForm';
 
@@ -23,7 +23,7 @@ const SignUpIndex = () => {
   };
 
   return (
-    <SigninTemplate
+    <SignupTemplate
       templateStyle={{
         width: ['100%', '100%', '100%', 900],
         margin: '0 auto',

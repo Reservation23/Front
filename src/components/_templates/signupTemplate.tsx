@@ -6,12 +6,12 @@ import { RegisterFormProps } from '../molecules/RegisterForm';
 
 import { Box, BoxProps, Heading } from '@chakra-ui/react';
 
-interface SigninTemplateProps {
+interface SignupTemplateProps {
   templateStyle: BoxProps;
   registerForm: RegisterFormProps;
 }
 
-const SigninTemplate: React.FC<SigninTemplateProps> = ({
+const SignupTemplate: React.FC<SignupTemplateProps> = ({
   registerForm,
   templateStyle,
 }) => {
@@ -23,4 +23,4 @@ const SigninTemplate: React.FC<SigninTemplateProps> = ({
   );
 };
 
-export default SigninTemplate;
+export default SignupTemplate;

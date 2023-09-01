@@ -9,24 +9,27 @@ import {
 
 import CustomInput from '../atoms/Input';
 import ButtonList from './ButtonList';
+import { useNavigate } from 'react-router-dom';
+
+type LoginData = {
+  username: string;
+  password: string;
+};
 
 type LoginFormProps = Omit<FormControlProps, 'onSubmit'> & {
   onSubmit: (value: LoginData) => void;
 };
 
-type LoginData = {
-  email: string;
-  password: string;
-};
-
 const LoginForm = (props: LoginFormProps) => {
   const { onSubmit, ...rest } = props;
 
-  const [email, setEmail] = useState<string>('');
+  const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
+  const navigate = useNavigate();
+
   const handleSubmit = () => {
-    onSubmit({ email, password });
+    onSubmit({ username, password });
   };
 
   return (
@@ -36,8 +39,8 @@ const LoginForm = (props: LoginFormProps) => {
           <FormLabel>이메일</FormLabel>
           <CustomInput
             placeholder="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
         </Box>
         <Box display={'flex'} flexDirection={'row'} gap={6}>
@@ -52,7 +55,11 @@ const LoginForm = (props: LoginFormProps) => {
         <ButtonList
           buttonList={[
             { children: '로그인', type: 'submit' },
-            { children: '회원가입', onClick: () => {}, type: 'button' },
+            {
+              children: '회원가입',
+              onClick: () => navigate('/signup'),
+              type: 'button',
+            },
           ]}
         />
       </FormControl>
