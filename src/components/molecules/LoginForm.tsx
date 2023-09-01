@@ -11,12 +11,12 @@ import CustomInput from '../atoms/Input';
 import ButtonList from './ButtonList';
 import { useNavigate } from 'react-router-dom';
 
-type LoginData = {
+export type LoginData = {
   username: string;
   password: string;
 };
 
-type LoginFormProps = Omit<FormControlProps, 'onSubmit'> & {
+export type LoginFormProps = Omit<FormControlProps, 'onSubmit'> & {
   onSubmit: (value: LoginData) => void;
 };
 
@@ -28,7 +28,8 @@ const LoginForm = (props: LoginFormProps) => {
 
   const navigate = useNavigate();
 
-  const handleSubmit = () => {
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
     onSubmit({ username, password });
   };
 

@@ -2,6 +2,7 @@ import React from 'react';
 import GlobalLayout from './_layout';
 import Index from './index';
 import SignUpIndex from './signup';
+import SigninIndex from './signin';
 
 export const routes = [
   {
@@ -14,8 +15,17 @@ export const routes = [
         element: <SignUpIndex />,
         index: true,
       },
+      {
+        path: 'signin',
+        element: <SigninIndex />,
+        index: true,
+      },
     ],
   },
 ];
 
-export const pages = [{ route: '/' }, { route: '/signup' }];
+export const pages = [
+  { route: '/' },
+  { route: '/signup' },
+  { route: '/signin' },
+];
