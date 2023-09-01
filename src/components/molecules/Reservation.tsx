@@ -2,14 +2,18 @@ import React from 'react';
 
 import { ReservationItemProps } from '../../store/_reducer/reservation';
 
-const ReservationItem: React.FC<ReservationItemProps> = ({
-  description,
-  location,
-  memberId,
-  name,
-  storeId,
-}) => {
-  return <div></div>;
+import { Box, BoxProps } from '@chakra-ui/react';
+
+const ReservationItem: React.FC<
+  ReservationItemProps & { style?: BoxProps }
+> = ({ description, location, memberId, name, storeId, style }) => {
+  return (
+    <Box {...style}>
+      <div>{name}</div>
+      <div>{location}</div>
+      <div>{description}</div>
+    </Box>
+  );
 };
 
 export default ReservationItem;

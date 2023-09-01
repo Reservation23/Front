@@ -69,7 +69,11 @@ export const getReservation = createAsyncThunk<
 export const reservationSlice = createSlice({
   name: 'reservation',
   initialState,
-  reducers: {},
+  reducers: {
+    initReservation: (state: StateProps) => {
+      return initialState;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getReservation.fulfilled, (_, action) => {
       return action.payload;
@@ -83,6 +87,6 @@ export const reservationSlice = createSlice({
   },
 });
 
-export const {} = reservationSlice.actions;
+export const { initReservation } = reservationSlice.actions;
 
 export default reservationSlice.reducer;
