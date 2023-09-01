@@ -14,7 +14,7 @@ interface UserState {
 export type StateProps = UserState;
 
 const initialState: UserState = {
-  isLogin: false,
+  isLogin: true,
   user: {
     email: '',
     name: '',

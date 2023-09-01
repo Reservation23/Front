@@ -1,10 +1,13 @@
 import React from 'react';
 
-import SignupTemplate from '../../components/templeit/signupTemplate';
-
 import { RegisterData } from '../../components/molecules/RegisterForm';
 
+import SignupTemplate from '../../components/templeit/signupTemplate';
+
+import useAuth from '../../hooks/useAuth';
+
 const SignUpIndex = () => {
+  useAuth(false);
   const onSubmit = async (value: RegisterData) => {
     try {
       const response = await fetch('http://3.39.231.227:8080/member', {

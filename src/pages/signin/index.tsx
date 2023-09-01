@@ -4,7 +4,10 @@ import { LoginData } from '../../components/molecules/LoginForm';
 
 import SigninTemplate from '../../components/templeit/signinTemplate';
 
+import useAuth from '../../hooks/useAuth';
+
 const SigninIndex = () => {
+  useAuth(false);
   const onSubmit = async (value: LoginData) => {
     // api 연동
   };
