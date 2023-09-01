@@ -1,24 +1,22 @@
 import React from 'react';
 
-import RegisterForm from '../molecules/RegisterForm';
-
-import { RegisterFormProps } from '../molecules/RegisterForm';
+import LoginForm, { LoginFormProps } from '../molecules/LoginForm';
 
 import { Box, BoxProps, Heading } from '@chakra-ui/react';
 
 interface SigninTemplateProps {
   templateStyle: BoxProps;
-  registerForm: RegisterFormProps;
+  loginForm: LoginFormProps;
 }
 
 const SigninTemplate: React.FC<SigninTemplateProps> = ({
-  registerForm,
+  loginForm,
   templateStyle,
 }) => {
   return (
     <Box {...templateStyle}>
-      <Heading>회원가입</Heading>
-      <RegisterForm {...registerForm} />
+      <Heading>로그인</Heading>
+      <LoginForm {...loginForm} />
     </Box>
   );
 };
