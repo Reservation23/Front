@@ -1,6 +1,6 @@
 import React from 'react';
 
-import LoginForm, { LoginFormProps } from '../molecules/LoginForm';
+import LoginForm, { LoginFormProps } from '../organisms/LoginForm';
 
 import { Box, BoxProps, Heading } from '@chakra-ui/react';
 

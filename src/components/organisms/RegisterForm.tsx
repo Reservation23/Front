@@ -32,8 +32,6 @@ const RegisterForm = (props: RegisterFormProps) => {
   const [password, setPassword] = useState<string>('');
   const [status, setStatus] = useState<string>('CLIENT');
 
-  console.log(status);
-
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     onSubmit({

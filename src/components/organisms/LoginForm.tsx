@@ -8,7 +8,7 @@ import {
 } from '@chakra-ui/react';
 
 import CustomInput from '../atoms/Input';
-import ButtonList from './ButtonList';
+import ButtonList from '../molecules/ButtonList';
 import { useNavigate } from 'react-router-dom';
 
 export type LoginData = {

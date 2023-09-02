@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { LoginData } from '../../components/molecules/LoginForm';
+import { LoginData } from '../../components/organisms/LoginForm';
 
 import { useAppThunkDispatch } from '../../store';
 

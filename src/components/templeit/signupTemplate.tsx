@@ -1,8 +1,8 @@
 import React from 'react';
 
-import RegisterForm from '../molecules/RegisterForm';
+import RegisterForm from '../organisms/RegisterForm';
 
-import { RegisterFormProps } from '../molecules/RegisterForm';
+import { RegisterFormProps } from '../organisms/RegisterForm';
 
 import { Box, BoxProps, Heading } from '@chakra-ui/react';
 
