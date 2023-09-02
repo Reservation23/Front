@@ -1,13 +1,12 @@
 import React from 'react';
 
-import { LoginData } from '../../components/molecules/LoginForm';
+import useAuth from '../../hooks/useAuth';
 
 import SigninTemplate from '../../components/templeit/signinTemplate';
 
 const SigninIndex = () => {
-  const onSubmit = async (value: LoginData) => {
-    // api 연동
-  };
+  useAuth(false);
+
   return (
     <SigninTemplate
       templateStyle={{
@@ -18,7 +17,6 @@ const SigninIndex = () => {
         gap: 6,
       }}
       loginForm={{
-        onSubmit,
         whiteSpace: 'nowrap',
       }}
     />

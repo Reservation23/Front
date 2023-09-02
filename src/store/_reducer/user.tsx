@@ -5,44 +5,49 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 interface UserState {
   isLogin: boolean;
   user: {
-    email: string;
+    username: string;
     password: string;
-    name: string;
   };
 }
 
 export type StateProps = UserState;
 
+export type MemberStatus = 'CLIENT' | 'PARTNER';
+
+export type RegisterData = {
+  password: string;
+  username: string;
+  memberStatus: MemberStatus;
+};
+
 const initialState: UserState = {
   isLogin: false,
   user: {
-    email: '',
-    name: '',
+    username: '',
     password: '',
   },
 };
 
 export const loginUser = createAsyncThunk(
   'user/signupUser',
-  async (userData: { email: string; password: string }) => {
+  async (userData: { username: string; password: string }, thunkAPI) => {
     try {
-      const response = await fetch('url', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(userData),
-      });
-
-      const result = await response.json();
-      if (response.status === 201) {
-        return { ...result }; // reducer의 action.payload
-      } else {
-        throw new Error();
-      }
+      // 일단 로그인이 무조건 성공함.
+      return userData;
     } catch (e: any) {
-      console.log('Error', e.response.data);
-      throw new Error();
+      throw thunkAPI.rejectWithValue(e.response.data);
+    }
+  }
+);
+
+export const registerUser = createAsyncThunk(
+  'user/registerUser',
+  async (userData: RegisterData, thunkAPI) => {
+    try {
+      // 일단 회원가입 성공
+      return userData;
+    } catch (e: any) {
+      throw thunkAPI.rejectWithValue(e.response.data);
     }
   }
 );
@@ -54,8 +59,7 @@ export const userSlice = createSlice({
     logoutUser: (state: StateProps) => {
       state.isLogin = false;
       state.user = {
-        email: '',
-        name: '',
+        username: '',
         password: '',
       };
     },
@@ -74,6 +78,12 @@ export const userSlice = createSlice({
     // 실패
     builder.addCase(loginUser.rejected, (state, action) => {
       state.isLogin = false;
+    });
+    builder.addCase(registerUser.fulfilled, (state, action) => {
+      console.log('회원가입 성공');
+    });
+    builder.addCase(registerUser.rejected, (state, action) => {
+      console.log(action.payload);
     });
   },
 });
