@@ -4,13 +4,12 @@ import { useAppSelector, useAppThunkDispatch } from '../../store';
 
 import { getReservation } from '../../store/_reducer/reservation';
 
-import { Box, BoxProps } from '@chakra-ui/react';
+import { Table, TableProps } from '@chakra-ui/react';
 
 import ReservationItem from '../molecules/Reservation';
 
 interface Props {
-  ListStyle?: BoxProps;
-  ItemStyle?: BoxProps;
+  ListStyle?: TableProps;
 }
 
 const ReservationList = (props: Props) => {
@@ -22,18 +21,12 @@ const ReservationList = (props: Props) => {
     dispatch(getReservation());
   }, []);
 
-  console.log(data);
-
   return (
-    <Box {...props.ListStyle}>
+    <Table display={'flex'} flexDirection={'column'} {...props.ListStyle}>
       {data?.data.map((item) => (
-        <ReservationItem
-          key={item?.storeId}
-          style={props.ItemStyle}
-          {...item}
-        />
+        <ReservationItem key={item?.storeId} {...item} />
       ))}
-    </Box>
+    </Table>
   );
 };
 

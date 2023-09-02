@@ -7,12 +7,7 @@ import MainTemplate from '../components/templeit/mainTemplate';
 const Index = () => {
   useAuth(true);
 
-  return (
-    <MainTemplate
-      ListStyle={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}
-      ItemStyle={{ display: 'flex', gap: 6 }}
-    />
-  );
+  return <MainTemplate />;
 };
 
 export default Index;

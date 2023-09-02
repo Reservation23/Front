@@ -14,7 +14,7 @@ const MainTemplate: React.FC<Props> = ({ ListStyle, ItemStyle }) => {
   return (
     <>
       <Header />
-      <ReservationList ListStyle={ListStyle} ItemStyle={ItemStyle} />;
+      <ReservationList ListStyle={ListStyle} />;
     </>
   );
 };
