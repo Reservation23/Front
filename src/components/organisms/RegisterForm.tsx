@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 
+import { useAppThunkDispatch } from '../../store';
+
+import { registerUser, MemberStatus } from '../../store/_reducer/user';
+
 import {
   FormControl,
   FormControlProps,
@@ -12,38 +16,35 @@ import CustomInput from '../atoms/Input';
 import CustomButton from '../atoms/Button';
 
 import CustomSelect from '../atoms/Select';
+import { useNavigate } from 'react-router-dom';
 
-type MemberStatus = 'CLIENT' | 'PARTNER';
-
-export type RegisterData = {
-  password: string;
-  username: string;
-  memberStatus: MemberStatus;
-};
-
-export type RegisterFormProps = Omit<FormControlProps, 'onSubmit'> & {
-  onSubmit: (value: RegisterData) => void;
-};
+export type RegisterFormProps = Omit<FormControlProps, 'onSubmit'>;
 
 const RegisterForm = (props: RegisterFormProps) => {
-  const { onSubmit, ...rest } = props;
+  const navigate = useNavigate();
+  const dispatch = useAppThunkDispatch();
 
   const [username, setuserName] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [status, setStatus] = useState<string>('CLIENT');
 
-  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
-    onSubmit({
-      password,
-      username,
-      memberStatus: status as MemberStatus,
-    });
+
+    const result = await dispatch(
+      registerUser({ password, username, memberStatus: status as MemberStatus })
+    ).unwrap();
+
+    console.log(result);
+
+    if (result?.username) {
+      navigate('/signin');
+    }
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <FormControl display={'flex'} flexDirection={'column'} gap={6} {...rest}>
+      <FormControl display={'flex'} flexDirection={'column'} gap={6} {...props}>
         <Box
           display={'flex'}
           flexDirection={'row'}
