@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { RootState } from '..';
+import { AppDispatch, RootState } from '..';
 
 export interface ReservationItemProps {
   storeId: number;
@@ -46,25 +46,30 @@ const dummy: StateProps = {
   currentPage: 1,
 };
 
-export const getReservation = createAsyncThunk<
-  any,
-  undefined,
-  { state: RootState; rejectValue: { message: string } }
->('reservation/getReservation', async (_, thunkAPI) => {
-  try {
-    const isLogin = thunkAPI.getState().user.isLogin;
+const createAppAsyncThunk = createAsyncThunk.withTypes<{
+  state: RootState;
+  dispatch: AppDispatch;
+  rejectValue: { message: string };
+}>();
 
-    if (!isLogin) {
-      return thunkAPI.rejectWithValue({
-        message: '로그인이 필요한 서비스 입니다.',
-      });
+export const getReservation = createAppAsyncThunk(
+  'reservation/getReservation',
+  async (_, thunkAPI) => {
+    try {
+      const isLogin = thunkAPI.getState().user.isLogin;
+
+      if (!isLogin) {
+        return thunkAPI.rejectWithValue({
+          message: '로그인이 필요한 서비스 입니다.',
+        });
+      }
+      // 로그인만 되어있다면 데이터를 얻을 수 있다.
+      return dummy;
+    } catch (error) {
+      console.log(error);
     }
-    // 로그인만 되어있다면 데이터를 얻을 수 있다.
-    return dummy;
-  } catch (error) {
-    console.log(error);
   }
-});
+);
 
 export const reservationSlice = createSlice({
   name: 'reservation',
