@@ -4,6 +4,8 @@ import { useAppThunkDispatch } from '../../store';
 
 import { registerUser, MemberStatus } from '../../store/_reducer/user';
 
+import { useNavigate } from 'react-router-dom';
+
 import {
   FormControl,
   FormControlProps,
@@ -16,7 +18,6 @@ import CustomInput from '../atoms/Input';
 import CustomButton from '../atoms/Button';
 
 import CustomSelect from '../atoms/Select';
-import { useNavigate } from 'react-router-dom';
 
 export type RegisterFormProps = Omit<FormControlProps, 'onSubmit'>;
 

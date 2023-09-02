@@ -7,10 +7,9 @@ import Header from '../organisms/Header';
 
 interface Props {
   ListStyle?: BoxProps;
-  ItemStyle?: BoxProps;
 }
 
-const MainTemplate: React.FC<Props> = ({ ListStyle, ItemStyle }) => {
+const MainTemplate: React.FC<Props> = ({ ListStyle }) => {
   return (
     <>
       <Header />

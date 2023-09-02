@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
 
+import { useAppThunkDispatch } from '../../store';
+
+import { loginUser } from '../../store/_reducer/user';
+
+import { useNavigate } from 'react-router-dom';
+
 import {
   FormControl,
   FormControlProps,
@@ -8,34 +14,35 @@ import {
 } from '@chakra-ui/react';
 
 import CustomInput from '../atoms/Input';
+
 import ButtonList from '../molecules/ButtonList';
-import { useNavigate } from 'react-router-dom';
 
 export type LoginData = {
   username: string;
   password: string;
 };
 
-export type LoginFormProps = Omit<FormControlProps, 'onSubmit'> & {
-  onSubmit: (value: LoginData) => void;
-};
+export type LoginFormProps = Omit<FormControlProps, 'onSubmit'>;
 
 const LoginForm = (props: LoginFormProps) => {
-  const { onSubmit, ...rest } = props;
+  const navigate = useNavigate();
+  const dispatch = useAppThunkDispatch();
 
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
-  const navigate = useNavigate();
-
-  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
-    onSubmit({ username, password });
+    const result = await dispatch(loginUser({ username, password })).unwrap();
+
+    if (!result?.username) {
+      alert('로그인 정보를 다시 확인해주세요.');
+    }
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <FormControl display={'flex'} flexDirection={'column'} gap={6} {...rest}>
+      <FormControl display={'flex'} flexDirection={'column'} gap={6} {...props}>
         <Box
           display={'flex'}
           flexDirection={'row'}
