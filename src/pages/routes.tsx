@@ -3,6 +3,7 @@ import GlobalLayout from './_layout';
 import Index from './index';
 import SignUpIndex from './signup';
 import SigninIndex from './signin';
+import ReservationDetailIndex from './reservation/[id]';
 
 export const routes = [
   {
@@ -20,6 +21,11 @@ export const routes = [
         element: <SigninIndex />,
         index: true,
       },
+      {
+        path: 'reservation/:id',
+        element: <ReservationDetailIndex />,
+        index: true,
+      },
     ],
   },
 ];
@@ -28,4 +34,5 @@ export const pages = [
   { route: '/' },
   { route: '/signup' },
   { route: '/signin' },
+  { route: 'reservation/:id' },
 ];
